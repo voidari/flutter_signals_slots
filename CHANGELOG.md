@@ -1,3 +1,5 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+* Initial release of signals and slots.
+* Provides a means of creating signals, subscribing to them, and managing connections.
+* Adds test cases to validate functionality.

@@ -1,6 +1,6 @@
 name: signals_slots
 description: An implementation of a managed signals and slots system based on the boost signals2 C++ library.
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/voidari/flutter_signals_slots
 issue_tracker: https://github.com/voidari/flutter_signals_slots/issues
 

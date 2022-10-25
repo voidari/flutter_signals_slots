@@ -1,3 +1,6 @@
+## 1.0.1
+* Add ability to block a signal
+
 ## 1.0.0
 
 * Initial release of signals and slots.

@@ -141,6 +141,31 @@ void main() {
     expect(count, 1);
   });
 
+  test('Blocking Signals (Beginner)', () async {
+    Signal sig = Signal();
+    int count = 0;
+    sig.connect(() {
+      count++;
+    });
+
+    // Before block
+    count = 0;
+    sig.emit();
+    expect(count, 1);
+
+    // After block
+    count = 0;
+    sig.blocked = true;
+    sig.emit();
+    expect(count, 0);
+
+    // After unblock
+    count = 0;
+    sig.blocked = false;
+    sig.emit();
+    expect(count, 1);
+  });
+
   test('Reconnection example', () async {
     Signal sig = Signal();
     bool isCalled = false;

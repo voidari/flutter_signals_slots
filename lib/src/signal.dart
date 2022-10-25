@@ -9,6 +9,10 @@ class Signal {
   /// The list of functions registered to the signal
   final Map<int, List<Connection>> _connectionMap = <int, List<Connection>>{};
 
+  /// The blocked status of the signal. Signals that are blocked will
+  /// return an empty list.
+  bool blocked = false;
+
   /// Provides the means to connect a slot [function] to a signal.
   /// Signals emitted will execute each [group] in acending order
   /// with the default of 0. The [insertAtIndex] can be used to specify
@@ -92,6 +96,10 @@ class Signal {
       dynamic p9]) async {
     // The list of returned values from each function
     List<dynamic> retList = <dynamic>[];
+    // Determine if the signal has been blocked.
+    if (blocked) {
+      return retList;
+    }
     // Iterate over each subscribed function after sorting the
     // order of groups.
     List<int> groups = _connectionMap.keys.toList();

@@ -102,6 +102,25 @@ sig.emit();
 print(text); // func2 func3 func1
 ```
 
+### Blocking signals and connection
+Signals and connections can be blocked using the 'blocked' member variable. Signals are blocked to prevent them from emitting when emit is called. Connections can be blocked to prevent signals from executing the slot they are subscribed with.
+
+```dart
+Signal sig = Signal();
+Connection connection0 = sig.connect((){ print("slot 0"); });
+Connection connection1 = sig.connect((){ print("slot 1"); });
+sig.emit(); // 'slot 0' and 'slot 1' are printed
+
+// Blocked signal example
+sig.blocked = true;
+sig.emit(); // Nothing is printed
+sig.blocked = false;
+
+// Blocked connection example
+connection0.blocked = true;
+sig.emit(); // Only 'slot 1' is printed
+```
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/voidari/flutter_signals_slots.svg?style=for-the-badge

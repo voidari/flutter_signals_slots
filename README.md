@@ -1,11 +1,14 @@
 # Signals and Slots
 
 [![pub package](https://img.shields.io/pub/v/signals_slots.svg)](https://pub.dev/packages/signals_slots)
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+
+## Introduction
 
 An implementation of a managed signals and slots system based on the boost signals2 C++ library. Signals represent callbacks with multiple targets, and are also called publishers or events in similar systems. Signals are connected to some set of slots, which are callback receivers (also called event targets or subscribers), which are called when the signal is "emitted."
 
@@ -120,6 +123,12 @@ sig.blocked = false;
 connection0.blocked = true;
 sig.emit(); // Only 'slot 1' is printed
 ```
+
+## Appreciation and Proposals
+
+When we work on a project, any internal library we create that could benefit the community will be made public for free use. Please consider contributing, as work does go into creating and maintaining this library. As always, if something could be improved, please create an issue for it in the project repo and we'll be happy to discuss!
+
+[<img src="img/buymecoffee.png" width="175"/>](https://www.buymeacoffee.com/voidari)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

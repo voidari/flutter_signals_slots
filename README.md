@@ -25,7 +25,7 @@ To use this plugin, add `signals_slots` as a dependency in your pubspec.yaml fil
 Signals can be created for any function signature, but should only be used with the signature it was created for. Signals can be used to create slot connections, or reconnect an existing slot connection.
 
 ```dart
-Signal sig = Signal();
+Signal0 sig = Signal0();
 sig.connect(() { print("Hello, "); });
 sig.connect(() { print("World"); });
 sig.emit();
@@ -36,7 +36,7 @@ sig.emit();
 Signals can be sent with parameters. Results of any type are provided in a returned list with any type for each connection that handles the signal.
 
 ```dart
-Signal sig = Signal();
+Signal1<String> sig = Signal1<String>();
 sig.connect((String name) { return "Hello, $name."; });
 sig.connect((String name) { return "Goodbye, $name."; });
 List<dynamic> result = sig.emit("John");
@@ -47,7 +47,7 @@ List<dynamic> result = sig.emit("John");
 Connections are returned when connecting to a signal, or can be created and reconnected if getting a return value isn't possible. Connections are used to track the slot.
 
 ```dart
-Signal sig = Signal();
+Signal0 sig = Signal0();
 Connection connection = sig.connect(() {});
 // Check the connection status
 connection.isConnected();
@@ -86,7 +86,7 @@ Indexes will never be out of bounds. If a negative index is provided, it will be
 ```dart
 // Example without groups and indexes
 String text = "";
-Signal sig = Signal();
+Signal0 sig = Signal0();
 sig.connect((){ text += "func1 "; });
 sig.connect((){ text += "func2 "; });
 sig.connect((){ text += "func3 "; });
@@ -97,7 +97,7 @@ print(text); // func1 func2 func3
 ```dart
 // Example with groups and indexes
 String text = "";
-Signal sig = Signal();
+Signal0 sig = Signal0();
 sig.connect((){ text += "func1"; }, group: 1);
 sig.connect((){ text += "func2"; });
 sig.connect((){ text += "func3"; }, group: 1, insertAtIndex: 0);
@@ -109,7 +109,7 @@ print(text); // func2 func3 func1
 Signals and connections can be blocked using the 'blocked' member variable. Signals are blocked to prevent them from emitting when emit is called. Connections can be blocked to prevent signals from executing the slot they are subscribed with.
 
 ```dart
-Signal sig = Signal();
+Signal0 sig = Signal0();
 Connection connection0 = sig.connect((){ print("slot 0"); });
 Connection connection1 = sig.connect((){ print("slot 1"); });
 sig.emit(); // 'slot 0' and 'slot 1' are printed

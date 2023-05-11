@@ -9,7 +9,7 @@ import 'package:signals_slots/signals_slots.dart';
 void main() {
   test('Hello, World! (Beginner)', () async {
     // Signal with no arguments and a void return value
-    Signal sig = Signal();
+    Signal0 sig = Signal0();
 
     // Connect a slot
     bool called = false;
@@ -25,7 +25,7 @@ void main() {
   });
 
   test('Connecting Multiple Slots (Beginner)', () async {
-    Signal sig = Signal();
+    Signal0 sig = Signal0();
 
     int count = 0;
     // ignore: prefer_function_declarations_over_variables
@@ -45,7 +45,7 @@ void main() {
   });
 
   test('Ordering Slot Call Groups (Intermediate)', () async {
-    Signal sig = Signal();
+    Signal0 sig = Signal0();
     String result = "";
 
     sig.connect(() {
@@ -60,7 +60,7 @@ void main() {
   });
 
   test('Slot Arguments (Beginner)', () async {
-    Signal sig = Signal();
+    Signal2<int, int> sig = Signal2<int, int>();
     int count = 0;
 
     sig.connect((int x, int y) {
@@ -78,7 +78,7 @@ void main() {
   });
 
   test('Signal Return Values (Advanced)', () async {
-    Signal sig = Signal();
+    Signal2<int, int> sig = Signal2<int, int>();
 
     sig.connect((int x, int y) {
       return x + y;
@@ -98,7 +98,7 @@ void main() {
   });
 
   test('Disconnecting Slots (Beginner)', () async {
-    Signal sig = Signal();
+    Signal0 sig = Signal0();
     int count = 0;
     Connection connection = sig.connect(() {
       count++;
@@ -117,7 +117,7 @@ void main() {
   });
 
   test('Blocking Slots (Beginner)', () async {
-    Signal sig = Signal();
+    Signal0 sig = Signal0();
     int count = 0;
     Connection connection = sig.connect(() {
       count++;
@@ -142,7 +142,7 @@ void main() {
   });
 
   test('Blocking Signals (Beginner)', () async {
-    Signal sig = Signal();
+    Signal0 sig = Signal0();
     int count = 0;
     sig.connect(() {
       count++;
@@ -167,7 +167,7 @@ void main() {
   });
 
   test('Reconnection example', () async {
-    Signal sig = Signal();
+    Signal0 sig = Signal0();
     bool isCalled = false;
 
     Connection connection = Connection(null, () {
@@ -182,7 +182,7 @@ void main() {
   test('ConnectionGroup example', () async {
     ConnectionGroup connectionGroup = ConnectionGroup();
 
-    Signal sig = Signal();
+    Signal0 sig = Signal0();
     int count = 0;
     connectionGroup.add(sig.connect(() {
       count++;

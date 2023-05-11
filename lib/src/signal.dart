@@ -86,63 +86,6 @@ class Signal {
     return groups;
   }
 
-  Future<List<dynamic>> _emit(
-      [dynamic p0,
-      dynamic p1,
-      dynamic p2,
-      dynamic p3,
-      dynamic p4,
-      dynamic p5,
-      dynamic p6,
-      dynamic p7,
-      dynamic p8,
-      dynamic p9]) async {
-    // The list of returned values from each function
-    List<dynamic> retList = <dynamic>[];
-    // Determine if the signal has been blocked.
-    if (blocked) {
-      return retList;
-    }
-    // Iterate over each subscribed function after sorting the
-    // order of groups.
-    List<int> groups = _connectionMap.keys.toList();
-    groups.sort();
-    for (int group in groups) {
-      for (Connection connection in _connectionMap[group]!) {
-        // Skip if the connection is blocked
-        if (connection.blocked) {
-          continue;
-        }
-        dynamic ret;
-        if (p0 == null) {
-          ret = connection.function();
-        } else if (p1 == null) {
-          ret = connection.function(p0);
-        } else if (p2 == null) {
-          ret = connection.function(p0, p1);
-        } else if (p3 == null) {
-          ret = connection.function(p0, p1, p2);
-        } else if (p4 == null) {
-          ret = connection.function(p0, p1, p2, p3);
-        } else if (p5 == null) {
-          ret = connection.function(p0, p1, p2, p3, p4);
-        } else if (p6 == null) {
-          ret = connection.function(p0, p1, p2, p3, p4, p5);
-        } else if (p7 == null) {
-          ret = connection.function(p0, p1, p2, p3, p4, p5, p6);
-        } else if (p8 == null) {
-          ret = connection.function(p0, p1, p2, p3, p4, p5, p6, p7);
-        } else if (p9 == null) {
-          ret = connection.function(p0, p1, p2, p3, p4, p5, p6, p7, p8);
-        } else {
-          ret = connection.function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9);
-        }
-        retList.add(ret);
-      }
-    }
-    return retList;
-  }
-
   /// Disconnects a subscribed function from the signal.
   void disconnect(Connection connection) {
     _connectionMap.forEach((key, value) {

@@ -127,7 +127,9 @@ class Signal0 extends Signal {
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
     for (int group in _createEmitGroup()) {
-      for (Connection connection in _connectionMap[group]!) {
+      List<Connection>? connections = _connectionMap[group];
+      if (connections == null) continue;
+      for (Connection connection in List.from(connections)) {
         // Skip if the connection is blocked
         if (connection.blocked) {
           continue;
@@ -161,7 +163,9 @@ class Signal1<T0> extends Signal {
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
     for (int group in _createEmitGroup()) {
-      for (Connection connection in _connectionMap[group]!) {
+      List<Connection>? connections = _connectionMap[group];
+      if (connections == null) continue;
+      for (Connection connection in List.from(connections)) {
         // Skip if the connection is blocked
         if (connection.blocked) {
           continue;
@@ -195,7 +199,9 @@ class Signal2<T0, T1> extends Signal {
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
     for (int group in _createEmitGroup()) {
-      for (Connection connection in _connectionMap[group]!) {
+      List<Connection>? connections = _connectionMap[group];
+      if (connections == null) continue;
+      for (Connection connection in List.from(connections)) {
         // Skip if the connection is blocked
         if (connection.blocked) {
           continue;
@@ -229,7 +235,9 @@ class Signal3<T0, T1, T2> extends Signal {
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
     for (int group in _createEmitGroup()) {
-      for (Connection connection in _connectionMap[group]!) {
+      List<Connection>? connections = _connectionMap[group];
+      if (connections == null) continue;
+      for (Connection connection in List.from(connections)) {
         // Skip if the connection is blocked
         if (connection.blocked) {
           continue;
@@ -263,7 +271,9 @@ class Signal4<T0, T1, T2, T3> extends Signal {
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
     for (int group in _createEmitGroup()) {
-      for (Connection connection in _connectionMap[group]!) {
+      List<Connection>? connections = _connectionMap[group];
+      if (connections == null) continue;
+      for (Connection connection in List.from(connections)) {
         // Skip if the connection is blocked
         if (connection.blocked) {
           continue;
@@ -297,7 +307,9 @@ class Signal5<T0, T1, T2, T3, T4> extends Signal {
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
     for (int group in _createEmitGroup()) {
-      for (Connection connection in _connectionMap[group]!) {
+      List<Connection>? connections = _connectionMap[group];
+      if (connections == null) continue;
+      for (Connection connection in List.from(connections)) {
         // Skip if the connection is blocked
         if (connection.blocked) {
           continue;
@@ -331,7 +343,9 @@ class Signal6<T0, T1, T2, T3, T4, T5> extends Signal {
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
     for (int group in _createEmitGroup()) {
-      for (Connection connection in _connectionMap[group]!) {
+      List<Connection>? connections = _connectionMap[group];
+      if (connections == null) continue;
+      for (Connection connection in List.from(connections)) {
         // Skip if the connection is blocked
         if (connection.blocked) {
           continue;
@@ -366,7 +380,9 @@ class Signal7<T0, T1, T2, T3, T4, T5, T6> extends Signal {
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
     for (int group in _createEmitGroup()) {
-      for (Connection connection in _connectionMap[group]!) {
+      List<Connection>? connections = _connectionMap[group];
+      if (connections == null) continue;
+      for (Connection connection in List.from(connections)) {
         // Skip if the connection is blocked
         if (connection.blocked) {
           continue;

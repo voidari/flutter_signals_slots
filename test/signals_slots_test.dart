@@ -202,4 +202,18 @@ void main() {
     sig.emit();
     expect(count, 0);
   });
+
+  test('Disconnect on Emit example', () async {
+    int count = 0;
+    late final Connection connection;
+    Signal0 sig = Signal0();
+    connection = sig.connect(() {
+      connection.disconnect();
+      count++;
+    });
+
+    sig.emit();
+    sig.emit();
+    expect(count, 1);
+  });
 }

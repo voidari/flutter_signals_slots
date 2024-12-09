@@ -71,21 +71,6 @@ class Signal {
     return false;
   }
 
-  /// An emit helper that will setup the groups in the correct
-  /// order for iteration, or an empty group list if the signal
-  /// is blocked.
-  List<int> _createEmitGroup() {
-    // Determine if the signal has been blocked.
-    if (blocked) {
-      return <int>[];
-    }
-    // Iterate over each subscribed function after sorting the
-    // order of groups.
-    List<int> groups = _connectionMap.keys.toList();
-    groups.sort();
-    return groups;
-  }
-
   /// Disconnects a subscribed function from the signal.
   void disconnect(Connection connection) {
     _connectionMap.forEach((key, value) {
@@ -102,6 +87,27 @@ class Signal {
         connection.detach();
       }
     });
+  }
+
+  List<Connection> _createEmitList() {
+    List<Connection> connectionList = <Connection>[];
+    // Determine if the signal has been blocked.
+    if (blocked) {
+      return connectionList;
+    }
+    // Iterate over each subscribed function after sorting the
+    // order of groups.
+    List<int> groups = _connectionMap.keys.toList();
+    groups.sort();
+    // Iterate over each sub scribed function.
+    for (int group in groups) {
+      List<Connection>? connections = _connectionMap[group];
+      if (connections == null) continue;
+      for (Connection connection in connections) {
+        connectionList.add(connection);
+      }
+    }
+    return connectionList;
   }
 }
 
@@ -126,16 +132,10 @@ class Signal0 extends Signal {
     // The list of returned values from each function
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
-    for (int group in _createEmitGroup()) {
-      List<Connection>? connections = _connectionMap[group];
-      if (connections == null) continue;
-      for (Connection connection in List.from(connections)) {
-        // Skip if the connection is blocked
-        if (connection.blocked) {
-          continue;
-        }
-        retList.add(connection.function());
-      }
+    for (Connection connection in _createEmitList()) {
+      // Skip if the connection is blocked
+      if (connection.blocked) continue;
+      retList.add(connection.function());
     }
     return retList;
   }
@@ -162,16 +162,10 @@ class Signal1<T0> extends Signal {
     // The list of returned values from each function
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
-    for (int group in _createEmitGroup()) {
-      List<Connection>? connections = _connectionMap[group];
-      if (connections == null) continue;
-      for (Connection connection in List.from(connections)) {
-        // Skip if the connection is blocked
-        if (connection.blocked) {
-          continue;
-        }
-        retList.add(connection.function(p0));
-      }
+    for (Connection connection in _createEmitList()) {
+      // Skip if the connection is blocked
+      if (connection.blocked) continue;
+      retList.add(connection.function(p0));
     }
     return retList;
   }
@@ -198,16 +192,10 @@ class Signal2<T0, T1> extends Signal {
     // The list of returned values from each function
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
-    for (int group in _createEmitGroup()) {
-      List<Connection>? connections = _connectionMap[group];
-      if (connections == null) continue;
-      for (Connection connection in List.from(connections)) {
-        // Skip if the connection is blocked
-        if (connection.blocked) {
-          continue;
-        }
-        retList.add(connection.function(p0, p1));
-      }
+    for (Connection connection in _createEmitList()) {
+      // Skip if the connection is blocked
+      if (connection.blocked) continue;
+      retList.add(connection.function(p0, p1));
     }
     return retList;
   }
@@ -234,16 +222,10 @@ class Signal3<T0, T1, T2> extends Signal {
     // The list of returned values from each function
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
-    for (int group in _createEmitGroup()) {
-      List<Connection>? connections = _connectionMap[group];
-      if (connections == null) continue;
-      for (Connection connection in List.from(connections)) {
-        // Skip if the connection is blocked
-        if (connection.blocked) {
-          continue;
-        }
-        retList.add(connection.function(p0, p1, p2));
-      }
+    for (Connection connection in _createEmitList()) {
+      // Skip if the connection is blocked
+      if (connection.blocked) continue;
+      retList.add(connection.function(p0, p1, p2));
     }
     return retList;
   }
@@ -270,16 +252,10 @@ class Signal4<T0, T1, T2, T3> extends Signal {
     // The list of returned values from each function
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
-    for (int group in _createEmitGroup()) {
-      List<Connection>? connections = _connectionMap[group];
-      if (connections == null) continue;
-      for (Connection connection in List.from(connections)) {
-        // Skip if the connection is blocked
-        if (connection.blocked) {
-          continue;
-        }
-        retList.add(connection.function(p0, p1, p2, p3));
-      }
+    for (Connection connection in _createEmitList()) {
+      // Skip if the connection is blocked
+      if (connection.blocked) continue;
+      retList.add(connection.function(p0, p1, p2, p3));
     }
     return retList;
   }
@@ -306,16 +282,10 @@ class Signal5<T0, T1, T2, T3, T4> extends Signal {
     // The list of returned values from each function
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
-    for (int group in _createEmitGroup()) {
-      List<Connection>? connections = _connectionMap[group];
-      if (connections == null) continue;
-      for (Connection connection in List.from(connections)) {
-        // Skip if the connection is blocked
-        if (connection.blocked) {
-          continue;
-        }
-        retList.add(connection.function(p0, p1, p2, p3, p4));
-      }
+    for (Connection connection in _createEmitList()) {
+      // Skip if the connection is blocked
+      if (connection.blocked) continue;
+      retList.add(connection.function(p0, p1, p2, p3, p4));
     }
     return retList;
   }
@@ -342,16 +312,10 @@ class Signal6<T0, T1, T2, T3, T4, T5> extends Signal {
     // The list of returned values from each function
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
-    for (int group in _createEmitGroup()) {
-      List<Connection>? connections = _connectionMap[group];
-      if (connections == null) continue;
-      for (Connection connection in List.from(connections)) {
-        // Skip if the connection is blocked
-        if (connection.blocked) {
-          continue;
-        }
-        retList.add(connection.function(p0, p1, p2, p3, p4, p5));
-      }
+    for (Connection connection in _createEmitList()) {
+      // Skip if the connection is blocked
+      if (connection.blocked) continue;
+      retList.add(connection.function(p0, p1, p2, p3, p4, p5));
     }
     return retList;
   }
@@ -379,16 +343,10 @@ class Signal7<T0, T1, T2, T3, T4, T5, T6> extends Signal {
     // The list of returned values from each function
     List<dynamic> retList = <dynamic>[];
     // Iterate over each subscribed function.
-    for (int group in _createEmitGroup()) {
-      List<Connection>? connections = _connectionMap[group];
-      if (connections == null) continue;
-      for (Connection connection in List.from(connections)) {
-        // Skip if the connection is blocked
-        if (connection.blocked) {
-          continue;
-        }
-        retList.add(connection.function(p0, p1, p2, p3, p4, p5, p6));
-      }
+    for (Connection connection in _createEmitList()) {
+      // Skip if the connection is blocked
+      if (connection.blocked) continue;
+      retList.add(connection.function(p0, p1, p2, p3, p4, p5, p6));
     }
     return retList;
   }
